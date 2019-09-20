@@ -41,8 +41,7 @@ app.use('/events', event);
 const speaker = require('./routes/speaker');
 app.use('/speakers', speaker);
 
-const user = require('./routes/user');
-app.use('/user', user);
+
 
 //Server
 app.set('port', process.env.PORT || 3000);
