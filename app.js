@@ -33,7 +33,7 @@ app.use(morgan('dev'));
 //Routes
 
 const router = require('./routes/index');
-app.use('/api', router);
+app.use('/', router);
 
 const event = require('./routes/event');
 app.use('/events', event);
