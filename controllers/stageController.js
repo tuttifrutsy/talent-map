@@ -2,6 +2,7 @@ const Stage = require("../models/Stage");
 
 module.exports.getAllStages = (req, res) => {
   Stage.find()
+    .populate('event')
     .then(allStages =>
       res.status(201).json({
         success: true,
@@ -81,7 +82,7 @@ module.exports.newStage = (req, res) => {
     .catch(error =>
       res.status(400).json({
         success: false,
-        msg: "Ocurrio un erro intenta de nuevo"
+        msg: "Ocurrio un error intenta de nuevo"
       })
     );
 };

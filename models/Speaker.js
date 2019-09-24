@@ -5,7 +5,7 @@ const speakerSchema = new Schema(
   {
     name: {
       firstname: { type: String, required: true },
-      lastname: { type: String, required: true }
+      lastname: { type: String}
     },
     resume: String,
     avatar: String,
@@ -15,7 +15,7 @@ const speakerSchema = new Schema(
       enum: [
         "AgroLand",
         "CreativeLand",
-        "IronLAnd",
+        "IronLand",
         "GamerLand",
         "BlockchainLand",
         "DevLand",
@@ -26,7 +26,8 @@ const speakerSchema = new Schema(
       redes: {
         facebook: String,
         twitter: String,
-        instragram: String
+        instragram: String,
+        linkedin:String,
       },
       author: { type: Schema.Types.ObjectId, ref: "User" }
     }

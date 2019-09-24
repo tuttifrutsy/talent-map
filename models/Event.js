@@ -6,7 +6,7 @@ const eventSchema = new Schema(
     title: String,
     description: String,
     scheduledFor: Date,
-    location: { type: Schema.Types.ObjectId, ref: "Stage" },
+    stage: { type: Schema.Types.ObjectId, ref: "Stage" },
     speaker: { type: Schema.Types.ObjectId, ref: "Speaker" },
     type: {
       type: String,
@@ -17,7 +17,7 @@ const eventSchema = new Schema(
       enum: [
         "AgroLand",
         "CreativeLand",
-        "IronLAnd",
+        "IronLand",
         "GamerLand",
         "BlockchainLand",
         "DevLand",
