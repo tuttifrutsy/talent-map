@@ -1,29 +1,31 @@
+const Section = require("../models/Section");
 
-const Event = require("../models/Event");
-
-module.exports.getAllEvents = (req, res) => {
-  Event.find()
-    .then(allEvents =>
-      res.status(201).json({
-        success: true,
-        events: allEvents,
-        msg: "Todos los Eventos"
-      })
+module.exports.getAllSections = (req, res) => {
+  Section.find()
+  .then(allSections =>
+    res.status(201).json({
+      success: true,
+      Sections: allSections,
+      msg: "Todos las Secciones"
+    })
     )
     .catch(err =>
       res.status(400).json({
         success: false,
         msg: "Ocurrio un error, Prueba Otra vez"
       })
-    );
-};
-
-module.exports.getSingleEvent = (req, res, next) => {
-  Event.findById(req.params.eventId)
-    .then(event =>
+      );
+    };
+    
+    module.exports.getSingleSection = (req, res, next) => {
+      Section.findById(req.params.SectionId)
+      .populate('stage')
+      .populate('speaker')
+      .populate('event')
+      .then(Section =>
       res.status(200).json({
         success: true,
-        event: event
+        Section: Section
       })
     )
     .catch(err =>
@@ -34,52 +36,43 @@ module.exports.getSingleEvent = (req, res, next) => {
     );
 };
 
-module.exports.newEvent = (req, res) => {
+module.exports.newSection = (req, res) => {
   const {
     title,
     description,
-    scheduleFor,
-    stageId,
-    speakerId,
-    type,
+    logoUrl,
     land
   } = req.body;
 
   if (
     title === "" ||
     description === "" ||
-    scheduleFor === "" ||
-    stageId === "" ||
-    speakerId === "" ||
-    type === "" ||
+    logoUrl === "" ||
     land === ""
   ) {
-    return res.json({ msg: "Completa los campos para crear un nuevo evento" });
+    return res.json({ msg: "Completa los campos para crear un nuevo Sectiono" });
   }
 
-  Event.findOne({ title })
-    .then(event => {
-      if (event !== null) {
+  Section.findOne({ title })
+    .then(Section => {
+      if (Section !== null) {
         return res.json({
-          msg: "Ya existe un evento con ese nombre, prueba otro"
+          msg: "Ya existe un Sectiono con ese nombre, prueba otro"
         });
       }
-      let newEvent = new Event({
+      let newSection = new Section({
         title,
         description,
-        scheduleFor,
-        stage: stageId,
-        speaker: speakerId,
+        logoUrl,
         land,
-        type
       });
-      newEvent
+      newSection
         .save()
-        .then(event =>
+        .then(Section =>
           res.status(200).json({
             success: true,
-            msg: "Se ha creado un nuevo evento",
-            event: event
+            msg: "Se ha creado un nuevo Sectiono",
+            Section: Section
           })
         )
         .catch(err =>
@@ -96,52 +89,53 @@ module.exports.newEvent = (req, res) => {
     );
 };
 
-module.exports.updateEvent = (req, res) => {
-  const id = req.params.eventId;
+module.exports.updateSection = (req, res) => {
+  const id = req.params.SectionId;
 
   const {
     title,
     description,
-    scheduleFor,
+    logoUrl,
     stageId,
     speakerId,
+    stageId,
     land,
-    type
   } = req.body;
 
   if (
     title === "" ||
     description === "" ||
-    scheduleFor === "" ||
+    logoUrl === "" ||
     stageId === "" ||
     speakerId === "" ||
-    type === "" ||
+    stageId === "" ||
     land === ""
   ) {
     return res.json({
-      msg: "Completa los campos que deseas actulizar del evento"
+      msg: "Completa los campos que deseas actulizar del Sectiono"
     });
   }
 
-  Event.updateOne(
+  Section.updateOne(
     { _id: id },
     {
       $set: {
         title: title,
         description: description,
-        scheduleFor: scheduleFor,
-        stage: stageId,
-        speaker: speakerId,
+        logoUrl: logoUrl,
+        stages: stageId,
+        speakers: speakerId,
+        stages: stageId,
         land,
         type
       }
     }
   )
-    .then(event => {
+    .then(Section => {
       res.status(200).json({
         success: true,
-        msg: "Evento Actualizado",
-        event: event
+        msg: "Sectiono Actualizado",
+        Section: Section
       });
     })
     .catch(err =>
@@ -152,14 +146,14 @@ module.exports.updateEvent = (req, res) => {
     );
 };
 
-module.exports.deleteEvent = (req, res) => {
-  const id = req.params.eventId;
-  Event.findByIdAndDelete(id)
+module.exports.deleteSection = (req, res) => {
+  const id = req.params.SectionId;
+  Section.findByIdAndDelete(id)
     .exec()
     .then(() =>
       res.status(204).json({
         success: true,
-        msg: "Se elimino el evento"
+        msg: "Se elimino el Sectiono"
       })
     )
     .catch(err =>

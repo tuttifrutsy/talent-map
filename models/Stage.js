@@ -4,10 +4,13 @@ const { Schema } = mongoose;
 const stageSchema = new Schema(
   {
     name: String,
-    zone:String,
+    zone: String,
     location: String,
     imageStage: String,
     events: [{ type: Schema.Types.ObjectId, ref: "Event" }],
+    section: { type: Schema.Types.ObjectId, ref: "Section" },
+    type: String,
+    description: String,
     land: {
       type: String,
       enum: [
@@ -18,12 +21,16 @@ const stageSchema = new Schema(
         "BlockchainLand",
         "DevLand",
         "BusinessLand",
-        "TalentWoman"
+        "TalentWoman",
+        "TalentHackathon",
+        "TalentEducation",
+        "TalentJobs",
+        "CiudadDeN",
+        "RecreaLand",
+        "Super"
       ]
     },
-    type:String,
-    description:String,
-    sponsors:[{type: Schema.Types.ObjectId, ref:"Sponsor"}],
+    sponsors: [{ type: Schema.Types.ObjectId, ref: "Sponsor" }],
     author: { type: Schema.Types.ObjectId, ref: "User" }
   },
 

@@ -14,13 +14,14 @@ const speakerSchema = new Schema(
       type: String,
       enum: [
         "AgroLand",
-        "CreativeLand",
+       "CreativeLand" ,
         "IronLand",
         "GamerLand",
         "BlockchainLand",
         "DevLand",
         "BusinessLand",
-        "TalentWoman"
+        "TalentWoman",
+        "TalentEducation"
       ],
       email: String,
       redes: {

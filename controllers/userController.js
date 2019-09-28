@@ -83,7 +83,7 @@ module.exports.updateUser = (req, res) => {
         },
         username: username,
         email: email,
-        avatar: avatar,
+        avatar: avatar
       }
     }
   )

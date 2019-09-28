@@ -16,8 +16,9 @@ const stages = [
     zone: "B1",
     location: "",
     events: [],
-    land: "DevLand",
+    section: "5d8eab90a079923ee1126db5",
     type: "Stage",
+    land: "DevLand",
     description: "",
     sponsors: []
   },
@@ -26,7 +27,7 @@ const stages = [
     zone: "B2",
     location: "",
     events: [],
-    land: "IronLand",
+    section: "5d8eab90a079923ee1126db9",
     type: "Stage",
     description: "",
     sponsors: []
@@ -36,6 +37,7 @@ const stages = [
     zone: "B3",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db5",
     land: "DevLand",
     type: "Stage",
     description: "",
@@ -46,6 +48,7 @@ const stages = [
     zone: "B4",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db5",
     land: "DevLand",
     type: "Pabellón",
     description: "",
@@ -56,6 +59,7 @@ const stages = [
     zone: "B5A",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db5",
     land: "DevLand",
     type: "Lab",
     description: "",
@@ -66,6 +70,7 @@ const stages = [
     zone: "C1",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db4",
     land: "CreativeLand",
     type: "Stage",
     description:
@@ -76,6 +81,7 @@ const stages = [
     zone: "C2",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db4",
     land: "CreativeLand",
     type: "Stage",
     description:
@@ -86,6 +92,7 @@ const stages = [
     zone: "C3",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db4",
     land: "CreativeLand",
     type: "Stage",
     description:
@@ -96,6 +103,7 @@ const stages = [
     zone: "C4",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db4",
     land: "CreativeLand",
     type: "Pabellón",
     description: "",
@@ -106,6 +114,7 @@ const stages = [
     zone: "C5",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db5",
     land: "DevLand",
     type: "Workshop",
     description: "",
@@ -116,6 +125,7 @@ const stages = [
     zone: "C6",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db4",
     land: "CreativeLand",
     type: "Stage",
     description: "",
@@ -126,6 +136,7 @@ const stages = [
     zone: "C7A",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db4",
     land: "CreativeLand",
     type: "Lab",
     description: "",
@@ -136,6 +147,7 @@ const stages = [
     zone: "C7B",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db4",
     land: "CreativeLand",
     type: "Lab",
     description: "",
@@ -146,6 +158,7 @@ const stages = [
     zone: "C7C",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db4",
     land: "CreativeLand",
     type: "Lab",
     description: "",
@@ -156,6 +169,7 @@ const stages = [
     zone: "C7D",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db4",
     land: "CreativeLand",
     type: "Lab",
     description: "",
@@ -166,7 +180,7 @@ const stages = [
     zone: "C7E",
     location: "",
     events: [],
-    land: "CreativeLand",
+    section: "5d8eab90a079923ee1126db4",
     type: "Lab",
     description:
       "Laboratorio vivencial, donde te podrás adentrar en el mundo de la moda, ",
@@ -177,6 +191,7 @@ const stages = [
     zone: "D1",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Stage",
     description: "",
@@ -187,6 +202,7 @@ const stages = [
     zone: "D2",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Stage",
     description: "",
@@ -197,6 +213,7 @@ const stages = [
     zone: "D3",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Pabellón",
     description: "",
@@ -207,6 +224,7 @@ const stages = [
     zone: "D5A",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Lab",
     description: "",
@@ -217,6 +235,7 @@ const stages = [
     zone: "D58",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Lab",
     description: "",
@@ -227,6 +246,7 @@ const stages = [
     zone: "D5C1",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Lab",
     description: "",
@@ -237,6 +257,7 @@ const stages = [
     zone: "D5C2",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Lab",
     description: "",
@@ -247,6 +268,7 @@ const stages = [
     zone: "D5C3",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Lab",
     description: "",
@@ -257,6 +279,7 @@ const stages = [
     zone: "D5C4",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Lab",
     description: "",
@@ -267,6 +290,7 @@ const stages = [
     zone: "D5D",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Lab",
     description: "",
@@ -277,6 +301,7 @@ const stages = [
     zone: "D5D - D5E",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Lab",
     description: "",
@@ -287,6 +312,7 @@ const stages = [
     zone: "D5F",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db9",
     land: "IronLand",
     type: "Lab",
     description: "",
@@ -297,6 +323,7 @@ const stages = [
     zone: "E1",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db8",
     land: "BusinessLand",
     type: "Stage",
     description: "",
@@ -307,6 +334,7 @@ const stages = [
     zone: "E2",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db8",
     land: "BusinessLand",
     type: "Stage",
     description: "",
@@ -317,6 +345,7 @@ const stages = [
     zone: "E3",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db8",
     land: "BusinessLand",
     type: "Stage",
     description: "",
@@ -327,6 +356,7 @@ const stages = [
     zone: "E4A",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db8",
     land: "BusinessLand",
     type: "Lab",
     description: "",
@@ -337,6 +367,7 @@ const stages = [
     zone: "E4B",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db8",
     land: "BusinessLand",
     type: "Lab",
     description: "",
@@ -347,7 +378,8 @@ const stages = [
     zone: "F1",
     location: "",
     events: [],
-    land: "BusinessLand",
+    land: "BlockchainLand",
+    section: "5d8eab90a079923ee1126db6",
     type: "Stage",
     description: "",
     sponsors: []
@@ -357,7 +389,8 @@ const stages = [
     zone: "F2",
     location: "",
     events: [],
-    land: "BusinessLand",
+    land: "BlockchainLand",
+    section: "5d8eab90a079923ee1126db6",
     type: "Lab",
     description: "",
     sponsors: []
@@ -368,8 +401,10 @@ const stages = [
     location: "",
     events: [],
     land: "GamerLand",
+    section: "5d8eab90a079923ee1126db7",
     type: "Stage",
-    description: "Un espacio monumental para 400 espectadores y escenario de 180 gragos, donde las finales de las justas de e-Sports.",
+    description:
+      "Un espacio monumental para 400 espectadores y escenario de 180 gragos, donde las finales de las justas de e-Sports.",
     sponsors: []
   },
   {
@@ -377,6 +412,7 @@ const stages = [
     zone: "G2",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db7",
     land: "GamerLand",
     type: "Stage",
     description: "",
@@ -387,6 +423,7 @@ const stages = [
     zone: "G3",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db7",
     land: "GamerLand",
     type: "Smart Games",
     description: "",
@@ -397,6 +434,7 @@ const stages = [
     zone: "G4",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db7",
     land: "GamerLand",
     type: "Smart Games",
     description: "",
@@ -407,6 +445,7 @@ const stages = [
     zone: "G5",
     location: "",
     events: [],
+    section: "5d8eab90a079923ee1126db7",
     land: "GamerLand",
     type: "Smart Games",
     description: "",
@@ -417,7 +456,7 @@ const stages = [
     zone: "H1",
     location: "",
     events: [],
-    
+    section: "5d8eab90a079923ee1126dc1",
     type: "Stage",
     description: "",
     sponsors: []
@@ -426,8 +465,8 @@ const stages = [
     name: "HACKATHON WORKSHOP 1",
     zone: "H2",
     location: "",
+    section: "5d8eab90a079923ee1126dc1",
     events: [],
-
     type: "Workshop",
     description: "",
     sponsors: []
@@ -437,7 +476,7 @@ const stages = [
     zone: "H4",
     location: "",
     events: [],
-  
+    section: "5d8eab90a079923ee1126dc1",
     type: "Workshop",
     description: "",
     sponsors: []
@@ -445,9 +484,8 @@ const stages = [
   {
     name: "JALISCO",
     zone: "I1",
-    location: "",
+    location: "5d8eab90a079923ee1126dbd",
     events: [],
- 
     type: "Workshop",
     description: "",
     sponsors: []
@@ -456,6 +494,7 @@ const stages = [
     name: "GUADALAJARA",
     zone: "I2",
     location: "",
+    section: "5d8eab90a079923ee1126dbe",
     events: [],
     type: "Pabellón",
     description: "",
@@ -466,7 +505,7 @@ const stages = [
     zone: "I3",
     location: "",
     events: [],
-   
+    section: "5d8eab90a079923ee1126dbc",
     type: "Stage",
     description: "",
     sponsors: []
@@ -476,7 +515,7 @@ const stages = [
     zone: "I4",
     location: "",
     events: [],
-  
+    section: "5d8eab90a079923ee1126dbf",
     type: "Stage",
     description: "",
     sponsors: []
@@ -484,9 +523,9 @@ const stages = [
   {
     name: "TALENT WOMAN",
     zone: "I5",
+    section: "5d8eab90a079923ee1126dbb",
     location: "",
     events: [],
-
     type: "Stage",
     description: "",
     sponsors: []
@@ -496,7 +535,17 @@ const stages = [
     zone: "J1",
     location: "",
     events: [],
-    land: "AgroLand",
+    section: "5d8eab90a079923ee1126dba",
+    type: "Stage",
+    description: "",
+    sponsors: []
+  },
+  {
+    name: "TALENT JOBS",
+    zone: "I5",
+    section: "5d8eab90a079923ee1126dc0",
+    location: "",
+    events: [],
     type: "Stage",
     description: "",
     sponsors: []
@@ -512,3 +561,7 @@ mongoose
   .catch(err => console.log(err));
 
 Stage.insertMany(stages);
+
+  
+
+

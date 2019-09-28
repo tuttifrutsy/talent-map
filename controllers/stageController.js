@@ -20,6 +20,7 @@ module.exports.getAllStages = (req, res) => {
 
 module.exports.getStage = (req, res) => {
   Stage.findById(req.params.stageId)
+  .populate('section')
     .then(stage =>
       res.status(200).json({
         success: true,
@@ -35,15 +36,15 @@ module.exports.getStage = (req, res) => {
 };
 
 module.exports.newStage = (req, res) => {
-  const { name, location, imageStage, events, land, type } = req.body;
+  const { name, location, imageStage, land, type, sectionId } = req.body;
 
   if (
     name === "" ||
     location === "" ||
     imageStage === "" ||
-    events === "" ||
     land === "" ||
-    type === ""
+    type === "" ||
+    sectionId === ""
   ) {
     return res.json({
       msg: "Completa los campos para ingresar un nuevo Stage"
@@ -58,9 +59,9 @@ module.exports.newStage = (req, res) => {
         name,
         location,
         imageStage,
-        events,
         land,
-        type
+        type,
+        section: sectionId
       });
 
       newStage
@@ -90,13 +91,13 @@ module.exports.newStage = (req, res) => {
 module.exports.updateStage = (req, res) => {
   const id = req.params.stageId;
 
-  const { name, location, imageStage, events, land, type } = req.body;
+  const { name, location, imageStage, eventId, land, type } = req.body;
 
   if (
     name === "" ||
     location === "" ||
     imageStage === "" ||
-    events === "" ||
+    eventId === "" ||
     land === "" ||
     type === ""
   ) {
@@ -112,7 +113,7 @@ module.exports.updateStage = (req, res) => {
         name: name,
         location: location,
         imageStage: imageStage,
-        events: events,
+        events: eventId,
         land: land,
         type: type
       }
