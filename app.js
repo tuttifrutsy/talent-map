@@ -3,7 +3,7 @@ const express = require ('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const cors = require("cors");
 
 const app = express();
 
@@ -24,9 +24,15 @@ mongoose
     console.error("Error connecting to mongo", err);
 });
 
+const corsOptions = {
+  origin: "http://localhost:3001",
+  optionsSuccessStatus: 200,
+  credentials: true
+};
 
 //MIDELWARE 
-
+app.options("*", cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
