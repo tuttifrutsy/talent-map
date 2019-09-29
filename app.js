@@ -47,6 +47,9 @@ app.use('/stage', stage);
 const user = require('./routes/user');
 app.use('/user', user);
 
+const section = require('./routes/section');
+app.use('/lands', section);
+
 //Server
 app.set('port', process.env.PORT || 3000);
 

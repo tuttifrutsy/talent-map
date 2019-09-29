@@ -1,118 +1,105 @@
-const Section = require("../models/Section");
+const Section = require('../models/Section');
 
-module.exports.getAllSections = (req, res) => {
+module.exports.getAllSections = ( req, res) => {
   Section.find()
-  .then(allSections =>
+  .populate('stages')
+  .populate('speakers')
+  .populate('events')
+  .then(allSections => 
     res.status(201).json({
-      success: true,
-      Sections: allSections,
-      msg: "Todos las Secciones"
-    })
-    )
+      succes: true,
+      events: allSections,
+      msg: "Todas las Secciones"
+    }))
     .catch(err =>
       res.status(400).json({
-        success: false,
-        msg: "Ocurrio un error, Prueba Otra vez"
-      })
-      );
-    };
-    
-    module.exports.getSingleSection = (req, res, next) => {
-      Section.findById(req.params.SectionId)
-      .populate('stage')
-      .populate('speaker')
-      .populate('event')
-      .then(Section =>
-      res.status(200).json({
-        success: true,
-        Section: Section
-      })
-    )
-    .catch(err =>
-      res.status(400).json({
-        success: false,
-        msg: "Ocurrió un error, Intenta otra vez"
-      })
-    );
+        succes: false,
+        msg: "Ocurrio un error, Intenta otra vez"
+      }));
+};
+
+module.exports.getSection = (req, res) => {
+  Section.findById(req.params.sectionId)
+  .populate('stages')
+  .populate('speakers')
+  .populate('events')
+  .then(section => 
+    res.status(200).json({
+    succes: true,
+    section: section
+    }))
+  .catch(err => 
+    res.status(400).json({
+      succes: false,
+      msg: "Ocurrio un error, intenta otra vez"
+    }));
 };
 
 module.exports.newSection = (req, res) => {
   const {
     title,
-    description,
     logoUrl,
-    land
-  } = req.body;
-
-  if (
-    title === "" ||
-    description === "" ||
+    type,
+    description,
+    autorID
+  } = req.body; 
+  if(title === "" ||
     logoUrl === "" ||
-    land === ""
-  ) {
-    return res.json({ msg: "Completa los campos para crear un nuevo Sectiono" });
-  }
-
-  Section.findOne({ title })
-    .then(Section => {
-      if (Section !== null) {
-        return res.json({
-          msg: "Ya existe un Sectiono con ese nombre, prueba otro"
-        });
+    type === "" ||
+    description === "" ||
+    autorID === ""){
+      return res.json({
+        msg: "Completa los campos para ingreaser una nueva Seción"
+      });
+    }
+    Section.findOne({title})
+    .then(section => {
+      if( section !== null) {
+        return res.json({msg:"Sección ya registrada, Intenta otro nombre"})
       }
       let newSection = new Section({
         title,
-        description,
         logoUrl,
-        land,
+        type,
+        description,
+        author: autorID
       });
       newSection
-        .save()
-        .then(Section =>
-          res.status(200).json({
-            success: true,
-            msg: "Se ha creado un nuevo Sectiono",
-            Section: Section
-          })
-        )
+      .save()
+      .then(section => 
+        res.status(200).json({
+          succes: true,
+          msg: "Se ha creado una nueva sección",
+          section: section,
+        }))
         .catch(err =>
           res.status(400).json({
-            success: false,
+            succes: false,
             msg: "Ocurrio un error, intenta otra vez"
-          })
-        );
-    })
-    .catch(error =>
-      res.status(400).json({
-        msg: "Ocurrio un error, intenta otra vez"
-      })
-    );
+          }))
+    });
 };
 
+
 module.exports.updateSection = (req, res) => {
-  const id = req.params.SectionId;
+  const id = req.params.sectionId;
 
   const {
     title,
     description,
     logoUrl,
-    stageId,
-    speakerId,
-    stageId,
-    land,
+    type,
+
   } = req.body;
 
   if (
     title === "" ||
     description === "" ||
     logoUrl === "" ||
-    stageId === "" ||
-    speakerId === "" ||
-    stageId === "" ||
-    land === ""
+    type === ""
   ) {
     return res.json({
-      msg: "Completa los campos que deseas actulizar del Sectiono"
+      msg: "Completa los campos que deseas actualizar"
     });
   }
 
@@ -123,37 +110,32 @@ module.exports.updateSection = (req, res) => {
         title: title,
         description: description,
         logoUrl: logoUrl,
-        stages: stageId,
-        speakers: speakerId,
-        stages: stageId,
-        land,
-        type
+        type: type,
       }
     }
   )
-    .then(Section => {
+    .then(section => {
       res.status(200).json({
         success: true,
-        msg: "Sectiono Actualizado",
-        Section: Section
+        msg: "Sección actualizada",
+        section: section
       });
     })
     .catch(err =>
       res.status(400).json({
         success: false,
-        msg: "Ocurrio un error, intenta otra vez"
+        msg: "Ocurrio un error, intenta de nuevo"
       })
     );
 };
 
 module.exports.deleteSection = (req, res) => {
-  const id = req.params.SectionId;
-  Section.findByIdAndDelete(id)
-    .exec()
+  const id = req.params.sectionId;
+  Section.findOneAndDelete(id)
     .then(() =>
       res.status(204).json({
         success: true,
-        msg: "Se elimino el Sectiono"
+        msg: "Se elimino la sección"
       })
     )
     .catch(err =>
