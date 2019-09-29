@@ -8,7 +8,7 @@ module.exports.getAllSections = ( req, res) => {
   .then(allSections => 
     res.status(201).json({
       succes: true,
-      events: allSections,
+      sections: allSections,
       msg: "Todas las Secciones"
     }))
     .catch(err =>
