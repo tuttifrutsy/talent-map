@@ -3,10 +3,7 @@ const Schema = mongoose.Schema;
 
 const speakerSchema = new Schema(
   {
-    name: {
-      firstname: { type: String, required: true },
-      lastname: { type: String}
-    },
+    name: String,
     resume: String,
     avatar: String,
     occupation: String,
