@@ -6,7 +6,7 @@ module.exports.getAllSpeakers = (req, res) => {
     .then(allSpeakers =>
       res.status(201).json({
         success: true,
-        events: allSpeakers,
+        speakers: allSpeakers,
         msg: "Todos los Speakers"
       })
     )
@@ -36,8 +36,7 @@ module.exports.getSpeaker = (req, res) => {
 
 module.exports.newSpeaker = (req, res) => {
   const {
-    firstname,
-    lastname,
+    name,
     resume,
     avatar,
     occupation,
@@ -46,8 +45,7 @@ module.exports.newSpeaker = (req, res) => {
   } = req.body;
 
   if (
-    firstname === "" ||
-    lastname === "" ||
+    name === "" ||
     occupation === "" ||
     resume === "" ||
     email === ""
@@ -56,16 +54,13 @@ module.exports.newSpeaker = (req, res) => {
       msg: "Completa los campos para ingresar un nuevo Speaker"
     });
   }
-  Speaker.findOne({ email })
+  Speaker.findOne({ name })
     .then(speaker => {
       if (speaker !== null) {
         return res.json({ msg: "Speaker ya registrado" });
       }
       let newSpeaker = new Speaker({
-        name: {
-          firstname: firstname,
-          lastname: lastname
-        },
+        name,
         occupation,
         resume,
         avatar,
@@ -101,8 +96,7 @@ module.exports.updateSpeaker = (req, res) => {
   const id = req.params.speakerId;
 
   const {
-    firstname,
-    lastname,
+    name,
     resume,
     avatar,
     occupation,
@@ -111,8 +105,7 @@ module.exports.updateSpeaker = (req, res) => {
   } = req.body;
 
   if (
-    firstname === "" ||
-    lastname === "" ||
+    name === "" ||
     occupation === "" ||
     resume === "" ||
     email === ""
@@ -126,7 +119,7 @@ module.exports.updateSpeaker = (req, res) => {
     { _id: id },
     {
       $set: {
-        name: { firstname: firstname, lastname: lastname },
+        name: name,
         resume: resume,
         email: email,
         avatar: avatar,
