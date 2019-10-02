@@ -6,6 +6,8 @@ const sectionSchema = new Schema(
     title: String,
     description: String,
     logoUrl: String,
+    imageBg:String,
+    imageDetail:String,
     type: {
       type: String,
       enum: ["Land", "Talent"]
