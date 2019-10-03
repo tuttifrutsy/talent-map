@@ -20,6 +20,7 @@ module.exports.getAllSpeakers = (req, res) => {
 
 module.exports.getSpeaker = (req, res) => {
   Speaker.findById(req.params.speakerId)
+    .populate('event')
     .then(speaker =>
       res.status(200).json({
         success: true,

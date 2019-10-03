@@ -11,6 +11,7 @@ const stageSchema = new Schema(
     section: { type: Schema.Types.ObjectId, ref: "Section" },
     type: String,
     description: String,
+    image:String,
     land: {
       type: String,
       enum: [
