@@ -21,6 +21,7 @@ module.exports.getAllEvents = (req, res) => {
 module.exports.getSingleEvent = (req, res, next) => {
   Event.findById(req.params.eventId)
     .populate('speaker')
+    .populate('stage')
     .then(event =>
       res.status(200).json({
         success: true,
