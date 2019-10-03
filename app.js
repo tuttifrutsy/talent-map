@@ -25,7 +25,7 @@ mongoose
 });
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://ponic.netlify.com/",
   optionsSuccessStatus: 200,
   credentials: true
 };
