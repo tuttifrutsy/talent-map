@@ -24,25 +24,16 @@ mongoose
     console.error("Error connecting to mongo", err);
 });
 
-// const corsOptions = {
-//   origin: "https://ponic.netlify.com/",
-//   optionsSuccessStatus: 200,
-//   credentials: true
-// };
-
-var whitelist = ["https://ponic.netlify.com/"];
-var corsOptions = {
-  origin: function(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  }
+const corsOptions = {
+  origin: "https://ponic.netlify.com/",
+  optionsSuccessStatus: 200,
+  credentials: true
 };
 
-//MIDELWARE 
-// app.options("*", cors(corsOptions));
+
+
+MIDELWARE 
+app.options("*", cors(corsOptions));
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
