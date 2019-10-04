@@ -4,7 +4,9 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require("cors");
-
+const session = require('express-session');
+const MongoStore = require("connect-mongo")(session);
+const passport = require('passport');
 const app = express();
 
 //DB
@@ -29,26 +31,48 @@ mongoose
 app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.use(
+  session({
+    secret: "aca el secret",
+    resave: true,
+    saveUninitialized: true
+  })
+);
 
+app.use(
+  session({
+    secret: "talent-map-secret",
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60
+    })
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 //Routes
 
+const authRoutes = require('./routes/authRoutes');
+app.use('/api', authRoutes);
+
 const router = require('./routes/index');
-app.use('/', router);
+app.use('/api', router);
 
 const event = require('./routes/event');
-app.use('/events', event);
+app.use('/api/events', event);
 
 const speaker = require('./routes/speaker');
-app.use('/speakers', speaker);
+app.use('/api/speakers', speaker);
 
 const stage = require('./routes/stage');
-app.use('/stage', stage);
+app.use('/api/stage', stage);
 
 const user = require('./routes/user');
-app.use('/user', user);
+app.use('/api/user', user);
 
 const section = require('./routes/section');
-app.use('/lands', section);
+app.use('/api/lands', section);
 
 //Server
 app.set('port', process.env.PORT || 3000);
