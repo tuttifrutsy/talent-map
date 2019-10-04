@@ -5,4 +5,6 @@ router.get('/', (req, res, next) => {
   res.json({msg: 'Inicia sesión para continuar..'});
 })
 
+
+
 module.exports = router;

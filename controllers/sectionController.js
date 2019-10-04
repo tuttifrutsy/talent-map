@@ -1,3 +1,5 @@
+const express = require("express");
+const router = express.Router();
 const Section = require('../models/Section');
 
 module.exports.getAllSections = ( req, res) => {

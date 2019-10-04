@@ -1,4 +1,5 @@
-
+const express = require("express");
+const router = express.Router();
 const Event = require("../models/Event");
 
 module.exports.getAllEvents = (req, res) => {
@@ -37,6 +38,7 @@ module.exports.getSingleEvent = (req, res, next) => {
 };
 
 module.exports.newEvent = (req, res) => {
+  const id = req.session.currentUser;
   const {
     title,
     description,
@@ -44,7 +46,7 @@ module.exports.newEvent = (req, res) => {
     stageId,
     speakerId,
     type,
-    land
+    land,
   } = req.body;
 
   if (
@@ -69,11 +71,12 @@ module.exports.newEvent = (req, res) => {
       let newEvent = new Event({
         title,
         description,
-        scheduledFor,
-        stage: stageId,
-        speaker: speakerId,
-        land,
-        type
+        // scheduledFor,
+        // stage: stageId,
+        // speaker: speakerId,
+        // land,
+        // type,
+        author: id
       });
       newEvent
         .save()

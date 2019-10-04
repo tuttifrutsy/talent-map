@@ -1,3 +1,5 @@
+const express = require("express");
+const router = express.Router();
 const Stage = require("../models/Stage");
 
 module.exports.getAllStages = (req, res) => {

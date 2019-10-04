@@ -1,4 +1,5 @@
-
+const express = require("express");
+const router = express.Router();
 const Speaker = require("../models/Speaker");
 
 module.exports.getAllSpeakers = (req, res) => {
