@@ -40,7 +40,7 @@ module.exports.newEvent = (req, res) => {
   const {
     title,
     description,
-    scheduleFor,
+    scheduledFor,
     stageId,
     speakerId,
     type,
@@ -50,7 +50,7 @@ module.exports.newEvent = (req, res) => {
   if (
     title === "" ||
     description === "" ||
-    scheduleFor === "" ||
+    scheduledFor === "" ||
     stageId === "" ||
     speakerId === "" ||
     type === "" ||
@@ -69,7 +69,7 @@ module.exports.newEvent = (req, res) => {
       let newEvent = new Event({
         title,
         description,
-        scheduleFor,
+        scheduledFor,
         stage: stageId,
         speaker: speakerId,
         land,

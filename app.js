@@ -24,16 +24,8 @@ mongoose
     console.error("Error connecting to mongo", err);
 });
 
-// const corsOptions = {
-//   origin: "https://ponic.netlify.com/",
-//   optionsSuccessStatus: 200,
-//   credentials: true
-// };
-
-
-
 //MIDELWARE 
-// app.options("*", cors(corsOptions));
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('dev'));
