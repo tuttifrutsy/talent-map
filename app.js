@@ -32,7 +32,7 @@ const corsOptions = {
 
 
 
-MIDELWARE 
+//MIDELWARE 
 app.options("*", cors(corsOptions));
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
