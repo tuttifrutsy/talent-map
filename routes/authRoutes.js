@@ -101,7 +101,7 @@ authRoutes.get("/loggedin", (req, res, next) => {
     
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
-    console.log(req.sessionID);
+  console.log(req.params.id);
     return;
   }
   res.status(403).json({ message: "Unauthorized" });

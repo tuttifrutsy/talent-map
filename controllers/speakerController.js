@@ -37,6 +37,7 @@ module.exports.getSpeaker = (req, res) => {
 };
 
 module.exports.newSpeaker = (req, res) => {
+  const userId = req.params.id;
   const {
     name,
     resume,
@@ -67,7 +68,8 @@ module.exports.newSpeaker = (req, res) => {
         resume,
         avatar,
         land,
-        email
+        email,
+        author:userId
       });
 
       newSpeaker

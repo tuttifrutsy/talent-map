@@ -39,7 +39,7 @@ module.exports.getStage = (req, res) => {
 
 module.exports.newStage = (req, res) => {
   const { name, location, imageStage, land, type, sectionId } = req.body;
-
+  const userId = req.params.id;
   if (
     name === "" ||
     location === "" ||
@@ -63,7 +63,8 @@ module.exports.newStage = (req, res) => {
         imageStage,
         land,
         type,
-        section: sectionId
+        section: sectionId,
+        author: userId
       });
 
       newStage

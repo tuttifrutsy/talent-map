@@ -38,18 +38,19 @@ module.exports.getSection = (req, res) => {
 };
 
 module.exports.newSection = (req, res) => {
+  const userId = req.params.id;
   const {
     title,
     logoUrl,
     type,
     description,
-    autorID
+   
   } = req.body; 
   if(title === "" ||
     logoUrl === "" ||
     type === "" ||
-    description === "" ||
-    autorID === ""){
+    description === "" 
+    ){
       return res.json({
         msg: "Completa los campos para ingreaser una nueva Seción"
       });
@@ -64,7 +65,7 @@ module.exports.newSection = (req, res) => {
         logoUrl,
         type,
         description,
-        author: autorID
+        author: userId
       });
       newSection
       .save()

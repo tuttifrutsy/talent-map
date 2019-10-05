@@ -38,7 +38,7 @@ module.exports.getSingleEvent = (req, res, next) => {
 };
 
 module.exports.newEvent = (req, res) => {
-  const id = req.session.currentUser;
+  const id = req.params.id
   const {
     title,
     description,
@@ -71,11 +71,11 @@ module.exports.newEvent = (req, res) => {
       let newEvent = new Event({
         title,
         description,
-        // scheduledFor,
-        // stage: stageId,
-        // speaker: speakerId,
-        // land,
-        // type,
+        scheduledFor,
+        stage: stageId,
+        speaker: speakerId,
+        land,
+        type,
         author: id
       });
       newEvent
