@@ -54,9 +54,7 @@ module.exports.newEvent = (req, res) => {
     description === "" ||
     scheduledFor === "" ||
     stageId === "" ||
-    speakerId === "" ||
-    type === "" ||
-    land === ""
+    speakerId === "" 
   ) {
     return res.json({ msg: "Completa los campos para crear un nuevo evento" });
   }
