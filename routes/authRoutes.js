@@ -5,6 +5,7 @@ const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
 const User = require('../models/User');
+var Strategy = require("passport-facebook").Strategy;
 
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
@@ -97,9 +98,10 @@ authRoutes.post("/logout", (req, res, next) => {
 });
 
 authRoutes.get("/loggedin", (req, res, next) => {
-
+    
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
+    console.log(req.sessionID);
     return;
   }
   res.status(403).json({ message: "Unauthorized" });

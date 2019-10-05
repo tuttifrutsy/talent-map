@@ -8,6 +8,7 @@ const session = require('express-session');
 const MongoStore = require("connect-mongo")(session);
 const passport = require('passport');
 const bcrypt = require("bcrypt");
+const cookieParser = require('cookie-parser');
 const LocalStrategy = require("passport-local").Strategy;
 const User = require('./models/User');
 const app = express();
@@ -34,6 +35,7 @@ mongoose
 app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.use(cookieParser())
 app.use(
   session({
     secret: "aca el secret",
