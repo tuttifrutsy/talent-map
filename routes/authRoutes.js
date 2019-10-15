@@ -1,11 +1,12 @@
 
 const express = require("express");
 const authRoutes = express.Router();
-const passport = require("passport");
-const bcrypt = require("bcryptjs");
-const bcryptSalt = 10;
+
 const User = require('../models/User');
-var Strategy = require("passport-facebook").Strategy;
+
+const jwt = require('jsonwebtoken');
+const passport = require("passport");
+
 
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
@@ -64,32 +65,23 @@ authRoutes.post("/signup", (req, res, next) => {
   });
 });
 
-authRoutes.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, theUser, failureDetails) => {
-    if (err) {
-      res
-        .status(500)
-        .json({ message: "Something went wrong authenticating user" });
-      return;
+authRoutes.post('/login', (req, res, next) =>{
+  passport.authenticate('local', {session:false}, (err, user, info)=> {
+    if(err || !user) {
+      return res.status(400).json({
+        message: "Something is not right",
+        user: user
+      });
     }
-
-    if (!theUser) {
-      
-      res.status(401).json(failureDetails);
-      return;
-    }
-
-    // save user in session
-    req.login(theUser, err => {
-      if (err) {
-        res.status(500).json({ message: "has iniciado sesión" });
-        return;
+    req.login(user, {session: false}, (err) => {
+      if ( err) {
+        res.send(err);
       }
 
- 
-      res.status(200).json(theUser);
+      const token = jwt.sign(user, `${process.env.JWT}`);
+      return res.json({user, token});
     });
-  })(req, res, next);
+  })(req, res);
 });
 
 authRoutes.post("/logout", (req, res, next) => {

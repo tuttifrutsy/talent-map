@@ -2,17 +2,23 @@ require("dotenv").config();
 const express = require ('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const cors = require("cors");
 const session = require('express-session');
-const MongoStore = require("connect-mongo")(session);
-const passport = require('passport');
-const bcrypt = require("bcrypt");
-const cookieParser = require('cookie-parser');
-const LocalStrategy = require("passport-local").Strategy;
-const User = require('./models/User');
-const app = express();
 
+const router = require("./routes/index");
+const event = require('./routes/event');
+const section = require('./routes/section');
+const speaker = require('./routes/speaker');
+const stage = require('./routes/stage');
+const user = require('./routes/user');
+const authRoutes = require("./routes/authRoutes");
+
+const passport = require('passport');
+require('./passport/passport');
+
+const app = express();
 //DB
 
 mongoose.Promise = Promise;
@@ -44,76 +50,19 @@ app.use(
   })
 );
 
-app.use(
-  session({
-    secret: "talent-map-secret",
-    cookie: { maxAge: 60000 },
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60
-    })
-  })
-);
-
-passport.serializeUser((user, cb) => {
-  cb(null, user._id);
-});
-
-passport.deserializeUser((id, cb) => {
-  User.findById(id, (err, user) => {
-    if (err) {
-      return cb(err);
-    }
-    cb(null, user);
-  });
-});
-
-passport.use(
-  new LocalStrategy(
-    {
-      passReqToCallback: true
-    },
-    (req, username, password, next) => {
-      User.findOne({ username }, (err, user) => {
-        if (err) {
-          return next(err);
-        }
-        if (!user) {
-          return next(null, false, { message: "Incorrect Username" });
-        }
-        if (!bcrypt.compareSync(password, user.password)) {
-          return next(null, false, { message: "Incorrect Password" });
-        }
-        return next(null, user);
-      });
-    }
-  )
-);
 
 app.use(passport.initialize());
 app.use(passport.session());
 //Routes
 
-const authRoutes = require('./routes/authRoutes');
-app.use('/api', authRoutes);
 
-const router = require('./routes/index');
 app.use('/api', router);
-
-const event = require('./routes/event');
 app.use('/api/events', event);
-
-const speaker = require('./routes/speaker');
-app.use('/api/speakers', speaker);
-
-const stage = require('./routes/stage');
-app.use('/api/stage', stage);
-
-const user = require('./routes/user');
-app.use('/api/user', user);
-
-const section = require('./routes/section');
 app.use('/api/lands', section);
+app.use('/api/speakers', speaker);
+app.use('/api/stage', stage);
+app.use('/api/user', passport.authenticate('jwt', {session:false}), user);
+app.use('/api', authRoutes);
 
 //Server
 app.set('port', process.env.PORT || 3000);
