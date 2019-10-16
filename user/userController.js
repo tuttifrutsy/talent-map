@@ -57,49 +57,39 @@ module.exports.newUser = (req, res, next) => {
   });
 };
 
-module.exports.login = (req,res, next) => {
-   console.log("caso login");
-        passport.authenticate("local", { session: false }, (error, user) => {
-            console.log("ejecutando *callback auth* de authenticate para estrategia local");
+module.exports.login = (req, res, next) => {
+  console.log("caso login");
+  passport.authenticate("local", { session: false }, (error, user) => {
+   
+    //si hubo un error en el callback verify relacionado con la consulta de datos de usuario
+    if (error || !user) {
+      next(new error_types.Error404("username or password not correct."));
+    } else {
+      console.log("*** comienza generacion token*****");
+      const payload = {
+        sub: user._id,
+        exp: Date.now() + parseInt(process.env.JWT_LIFETIME),
+        username: user.username
+      };
 
-            //si hubo un error en el callback verify relacionado con la consulta de datos de usuario
-            if (error || !user) {
-                next(new error_types.Error404("username or password not correct."))
-            }else {
-                console.log("*** comienza generacion token*****");
-                const payload = {
-                    sub: user._id,
-                    exp: Date.now() + parseInt(process.env.JWT_LIFETIME),
-                    username: user.username
-                };
-
-                /* NOTA: Si estuviesemos usando sesiones, al usar un callback personalizado, 
+      /* NOTA: Si estuviesemos usando sesiones, al usar un callback personalizado, 
                 es nuestra responsabilidad crear la sesión.
                 Por lo que deberiamos llamar a req.logIn(user, (error)=>{}) aquí*/
 
-                /*solo inficamos el payload ya que el header ya lo crea la lib jsonwebtoken internamente
+      /*solo inficamos el payload ya que el header ya lo crea la lib jsonwebtoken internamente
                 para el calculo de la firma y así obtener el token*/
-                const token = jwt.sign(JSON.stringify(payload), process.env.JWT_SECRET, {algorithm: process.env.JWT_ALGORITHM});
-                res.json({ data: { token: token } });
-            }
+      const token = jwt.sign(JSON.stringify(payload), process.env.JWT_SECRET, {
+        algorithm: process.env.JWT_ALGORITHM
+      });
+      res.json({ user: { token: token } });
+    }
+  })(req, res);
+};
 
-        })(req, res);
-}
 
-
-module.exports.getUser = (req, res) => {
-  User.findById(req.params.userId)
-  .then(user =>
-    res.status(200).json({
-      success: true,
-      user: user
-    })
-    )
-  .catch(err =>
-    res.status(400).json({
-      success: false,
-      msg: 'Ocurrio un error, intenta otra vez'
-    })); 
+module.exports.getUser = (req, res, ) => {
+   let user = req.user;
+   res.json({user:user})
 };
 
 

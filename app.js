@@ -76,12 +76,12 @@ passport.use(
   new JwtStrategy(opts, (jwt_payload, done) => {
     //console.log("ejecutando *callback verify* de estategia jwt");
     User.findOne({ _id: jwt_payload.sub })
-      .then(data => {
-        if (data === null) {
+      .then(user => {
+        if (user === null) {
           //no existe el usuario
           //podríamos registrar el usuario
           return done(null, false);
-        } else return done(null, data);
+        } else return done(null, user);
         /*encontramos el usuario así que procedemos a devolverlo para
         inyectarlo en req.user de la petición en curso*/
       })
