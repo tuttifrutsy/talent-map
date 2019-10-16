@@ -1,114 +1,114 @@
 
-const express = require("express");
-const authRoutes = express.Router();
-const passport = require("passport");
-const bcrypt = require("bcryptjs");
-const bcryptSalt = 10;
-const User = require('../models/User');
-var Strategy = require("passport-facebook").Strategy;
+// const express = require("express");
+// const authRoutes = express.Router();
+// const passport = require("passport");
+// const bcrypt = require("bcryptjs");
 
-authRoutes.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
+// const User = require('../models/User');
+// var Strategy = require("passport-facebook").Strategy;
 
-  if (!username || !password) {
-    res.status(400).json({ message: "Ingresa tu usuario y contraseña" });
-    return;
-  }
+// authRoutes.post("/signup", (req, res, next) => {
+//   const username = req.body.username;
+//   const password = req.body.password;
 
-  if (password.length < 7) {
-    res
-      .status(400)
-      .json({
-        message:
-          "Por seguridad ingresa un código de más de 8 caracteres."
-      });
-    return;
-  }
+//   if (!username || !password) {
+//     res.status(400).json({ message: "Ingresa tu usuario y contraseña" });
+ 
+//   }
 
-  User.findOne({ username }, (err, foundUser) => {
-    if (err) {
-      res.status(500).json({ message: "Revisa tu usuario." });
-      return;
-    }
+//   if (password.length < 7) {
+//     res
+//       .status(400)
+//       .json({
+//         message:
+//           "Por seguridad ingresa un código de más de 8 caracteres."
+//       });
+//     return;
+//   }
 
-    if (foundUser) {
-      res.status(400).json({ message: "Intenta uno nuevo, este usuario ya existe." });
-      return;
-    }
+//   User.findOne({ username }, (err, foundUser) => {
+//     if (err) {
+//       res.status(500).json({ message: "Revisa tu usuario." });
+//       return;
+//     }
 
-    const salt = bcrypt.genSaltSync(10);
-    const hashPass = bcrypt.hashSync(password, salt);
+//     if (foundUser) {
+//       res.status(400).json({ message: "Intenta uno nuevo, este usuario ya existe." });
+//       return;
+//     }
 
-    const aNewUser = new User({
-      username: username,
-      password: hashPass
-    });
+//     const salt = bcrypt.genSaltSync(10);
+//     const hashPass = bcrypt.hashSync(password, salt);
 
-    aNewUser.save(err => {
-      if (err) {
-        res
-          .status(400)
-          .json({ message: "." });
-        return;
-      }
+//     const aNewUser = new User({
+//       username: username,
+//       password: hashPass
+//     });
 
-      req.login(aNewUser, err => {
-        if (err) {
-          res.status(500).json({ message: "Ahora puedes Iniciar Sesión." });
-          return;
-        }
-        res.status(200).json(aNewUser);
-      });
-    });
-  });
-});
+//     aNewUser.save(err => {
+//       if (err) {
+//         res
+//           .status(400)
+//           .json({ message: "." });
+//         return;
+//       }
 
-authRoutes.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, theUser, failureDetails) => {
-    if (err) {
-      res
-        .status(500)
-        .json({ message: "Something went wrong authenticating user" });
-      return;
-    }
+//       req.login(aNewUser, err => {
+//         if (err) {
+//           res.status(500).json({ message: "Ahora puedes Iniciar Sesión." });
+    
+//         }
+//         res.status(200).json(aNewUser);
+//       });
+//     });
+//   });
+// });
 
-    if (!theUser) {
+// authRoutes.post("/login", (req, res, next) => {
+//   passport.authenticate("local", (err, theUser, failureDetails) => {
+//     if (err) {
+//       res
+//         .status(500)
+//         .json({ message: "Something went wrong authenticating user" });
+//       return;
+//     }
+
+//     if (!theUser) {
       
-      res.status(401).json(failureDetails);
-      return;
-    }
+//       res.status(401).json(failureDetails);
+//       return;
+//     }
 
-    // save user in session
-    req.login(theUser, err => {
-      if (err) {
-        res.status(500).json({ message: "has iniciado sesión" });
-        return;
-      }
+//     // save user in session
+//     req.login(theUser, err => {
+//       if (err) {
+//         res.status(500).json({ message: "has iniciado sesión" });
+//         return;
+//       }
 
  
-      res.status(200).json(theUser);
-    });
-  })(req, res, next);
-});
+//       res.status(200).json(theUser);
+//     });
+//   })(req, res, next);
+// });
 
-authRoutes.post("/logout", (req, res, next) => {
-  req.logout();
-  res.status(200).json({ message: "Log out success!" });
-});
+// authRoutes.post("/logout", (req, res, next) => {
+//   req.logout();
+//   res.status(200).json({ message: "Log out success!" });
+// });
 
-authRoutes.get("/loggedin", (req, res, next) => {
+// authRoutes.get("/loggedin", (req, res, next) => {
     
-  if (req.isAuthenticated()) {
-    res.status(200).json(req.user);
-  console.log(req.params.id);
-    return;
-  }
-  res.status(403).json({ message: "Unauthorized" });
-});
+//   if (req.isAuthenticated()) {
+//     res.status(200).json(req.user);
+//   console.log(req.params.id);
+//     return;
+//   }
+//   res.status(403).json({ message: "Unauthorized" });
+// });
 
 
 
 
 
-module.exports = authRoutes;
+// module.exports = authRoutes;

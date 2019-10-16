@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Stage = require("../models/Stage");
+const Stage = require("./StageModel");
 
 module.exports.getAllStages = (req, res) => {
   Stage.find()

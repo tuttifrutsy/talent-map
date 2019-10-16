@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Speaker = require("../models/Speaker");
+const Speaker = require("./SpeakerModel");
 
 module.exports.getAllSpeakers = (req, res) => {
   Speaker.find()

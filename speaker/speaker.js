@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const speakerController = require("../controllers/speakerController");
+const speakerController = require("./speakerController");
 
 router.get("/", speakerController.getAllSpeakers);
 
